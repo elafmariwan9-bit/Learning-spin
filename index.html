@@ -1,0 +1,942 @@
+<div class="background-orb orb-one"></div>
+<div class="background-orb orb-two"></div>
+
+<header class="navbar">
+
+  <button class="brand" onclick="showPage('home')">
+    <span class="brand-mark">✦</span>
+    <span>Learning Mission</span>
+  </button>
+
+  <nav>
+    <button class="nav-btn active" data-page="home" onclick="showPage('home')">
+      Home
+    </button>
+
+    <button class="nav-btn" data-page="explore" onclick="showPage('explore')">
+      Explore
+    </button>
+
+    <button class="nav-btn" data-page="history" onclick="showPage('history')">
+      History
+    </button>
+
+    <button class="nav-btn" data-page="progress" onclick="showPage('progress')">
+      Progress
+    </button>
+  </nav>
+
+  <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+    <span id="themeIcon">☾</span>
+  </button>
+
+</header>
+
+
+<main>
+
+  <!-- HOME -->
+
+  <section id="home" class="page active-page">
+
+    <div class="hero">
+
+      <div class="eyebrow">
+        <span>✦</span>
+        YOUR DAILY LEARNING RITUAL
+      </div>
+
+      <h1>
+        Learn something<br>
+        <em>worth knowing.</em>
+      </h1>
+
+      <p class="hero-description">
+        Choose a topic, explore it for 15 minutes, then teach it
+        back in your own words.
+      </p>
+
+
+      <div class="mission-card">
+
+        <div class="card-top">
+
+          <div>
+            <span class="small-label">
+              TODAY'S MISSION
+            </span>
+
+            <span
+              id="favoriteButton"
+              class="favorite"
+              onclick="toggleFavoriteCurrentTopic()">
+              ♡
+            </span>
+          </div>
+
+          <span id="topicNumber" class="topic-number">
+            01
+          </span>
+
+        </div>
+
+
+        <div class="topic-area">
+
+          <span id="topicCategory" class="topic-category">
+            SCIENCE
+          </span>
+
+          <h2 id="topicTitle">
+            Why do octopuses have three hearts?
+          </h2>
+
+          <p id="topicDescription">
+            Discover the fascinating biology behind one of the ocean's
+            most intelligent creatures.
+          </p>
+
+        </div>
+
+
+        <div class="topic-meta">
+
+          <span id="topicDifficulty">
+            ● Medium
+          </span>
+
+          <span>
+            15 min research
+          </span>
+
+          <span>
+            5 min presentation
+          </span>
+
+        </div>
+
+
+        <div class="mission-actions">
+
+          <button
+            class="secondary-btn"
+            onclick="generateTopic()">
+
+            <span>↻</span>
+            New topic
+
+          </button>
+
+
+          <button
+            class="primary-btn"
+            onclick="startResearch()">
+
+            Start learning
+            <span>→</span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="quick-settings">
+
+        <div class="setting">
+
+          <label for="categorySelect">
+            CATEGORY
+          </label>
+
+          <select
+            id="categorySelect"
+            onchange="generateTopic()">
+
+            <option value="All">
+              All topics
+            </option>
+
+            <option value="Science">
+              Science
+            </option>
+
+            <option value="Medicine">
+              Medicine
+            </option>
+
+            <option value="Psychology">
+              Psychology
+            </option>
+
+            <option value="History">
+              History
+            </option>
+
+            <option value="Philosophy">
+              Philosophy
+            </option>
+
+            <option value="Technology">
+              Technology
+            </option>
+
+            <option value="Nature">
+              Nature
+            </option>
+
+            <option value="Literature">
+              Literature
+            </option>
+
+            <option value="Society">
+              Society
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="setting">
+
+          <label for="difficultySelect">
+            DIFFICULTY
+          </label>
+
+          <select
+            id="difficultySelect"
+            onchange="generateTopic()">
+
+            <option value="All">
+              Any level
+            </option>
+
+            <option value="Easy">
+              Easy
+            </option>
+
+            <option value="Medium">
+              Medium
+            </option>
+
+            <option value="Hard">
+              Hard
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESEARCH -->
+
+  <section id="research" class="page">
+
+    <div class="session-page">
+
+      <button
+        class="back-btn"
+        onclick="confirmLeaveSession()">
+
+        ← Back
+
+      </button>
+
+
+      <div class="session-header">
+
+        <span class="session-label">
+          RESEARCH MODE
+        </span>
+
+        <h1 id="researchTitle">
+          Topic
+        </h1>
+
+        <p>
+          Explore, question, and take notes.
+        </p>
+
+      </div>
+
+
+      <div class="timer-card">
+
+        <div class="timer-label">
+          TIME REMAINING
+        </div>
+
+        <div
+          id="researchTimer"
+          class="big-timer">
+
+          15:00
+
+        </div>
+
+
+        <div class="progress-track">
+
+          <div
+            id="researchProgress"
+            class="progress-fill">
+          </div>
+
+        </div>
+
+
+        <div class="timer-buttons">
+
+          <button
+            id="researchPauseButton"
+            class="secondary-btn"
+            onclick="toggleResearchPause()">
+
+            Pause
+
+          </button>
+
+
+          <button
+            class="primary-btn"
+            onclick="finishResearch()">
+
+            Finish early →
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="notes-card">
+
+        <div class="notes-heading">
+
+          <div>
+
+            <span class="small-label">
+              YOUR NOTES
+            </span>
+
+            <h2>
+              What are you discovering?
+            </h2>
+
+          </div>
+
+          <span
+            id="saveStatus"
+            class="save-status">
+
+            Auto-saving
+
+          </span>
+
+        </div>
+
+
+        <textarea
+          id="researchNotes"
+          placeholder="Write down facts, questions, connections, or anything that catches your attention...">
+        </textarea>
+
+
+        <div class="note-tip">
+
+          <span>✦</span>
+
+          Try to find at least 3 interesting facts
+          and 1 surprising fact.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRESENTATION -->
+
+  <section id="presentation" class="page">
+
+    <div class="presentation-page">
+
+      <div class="presentation-content">
+
+        <span class="session-label">
+          PRESENTATION MODE
+        </span>
+
+        <h1 id="presentationTitle">
+          Your topic
+        </h1>
+
+        <p class="presentation-instruction">
+          Imagine you're explaining this to someone
+          who knows nothing about the subject.
+        </p>
+
+
+        <div
+          id="presentationTimer"
+          class="presentation-timer">
+
+          05:00
+
+        </div>
+
+
+        <div class="presentation-progress">
+
+          <div id="presentationProgress">
+          </div>
+
+        </div>
+
+
+        <p
+          id="presentationHint"
+          class="presentation-hint">
+
+          Speak. Explain. Teach.
+
+        </p>
+
+
+        <div class="presentation-actions">
+
+          <button
+            id="presentationPauseButton"
+            class="secondary-btn"
+            onclick="togglePresentationPause()">
+
+            Pause
+
+          </button>
+
+
+          <button
+            class="primary-btn"
+            onclick="finishPresentation()">
+
+            Finish presentation →
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REFLECTION -->
+
+  <section id="reflection" class="page">
+
+    <div class="reflection-page">
+
+      <div class="section-heading">
+
+        <span class="session-label">
+          ONE LAST THING
+        </span>
+
+        <h1>
+          Reflect on<br>
+          <em>what you learned.</em>
+        </h1>
+
+        <p>
+          A few questions to help turn information
+          into understanding.
+        </p>
+
+      </div>
+
+
+      <div class="reflection-form">
+
+        <label>
+
+          What did you learn?
+
+          <textarea
+            id="reflectionLearned"
+            placeholder="The most important things I learned were...">
+          </textarea>
+
+        </label>
+
+
+        <label>
+
+          What surprised you?
+
+          <textarea
+            id="reflectionSurprised"
+            placeholder="Something I didn't expect was...">
+          </textarea>
+
+        </label>
+
+
+        <label>
+
+          What was hardest to explain?
+
+          <textarea
+            id="reflectionHard"
+            placeholder="I found it difficult to explain...">
+          </textarea>
+
+        </label>
+
+
+        <label>
+
+          Explain the topic in one sentence.
+
+          <textarea
+            id="reflectionSentence"
+            placeholder="In simple terms, this topic is...">
+          </textarea>
+
+        </label>
+
+
+        <button
+          class="primary-btn complete-btn"
+          onclick="completeSession()">
+
+          Complete mission ✦
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- COMPLETE -->
+
+  <section id="complete" class="page">
+
+    <div class="complete-page">
+
+      <div class="completion-symbol">
+        ✦
+      </div>
+
+      <span class="session-label">
+        MISSION COMPLETE
+      </span>
+
+      <h1>
+        Beautiful work.
+      </h1>
+
+      <p id="completionTopic">
+        You explored a new idea today.
+      </p>
+
+
+      <div class="score-card">
+
+        <div
+          class="score-number"
+          id="completionScore">
+
+          100%
+
+        </div>
+
+
+        <div class="score-details">
+
+          <div>
+            <span>Research</span>
+            <strong id="completionResearch">
+              15:00
+            </strong>
+          </div>
+
+          <div>
+            <span>Presentation</span>
+            <strong id="completionPresentation">
+              05:00
+            </strong>
+          </div>
+
+          <div>
+            <span>Reflection</span>
+            <strong>
+              ✓ Complete
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="completion-actions">
+
+        <button
+          class="secondary-btn"
+          onclick="showPage('history')">
+
+          View history
+
+        </button>
+
+
+        <button
+          class="primary-btn"
+          onclick="newMission()">
+
+          New mission →
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- EXPLORE -->
+
+  <section id="explore" class="page">
+
+    <div class="library-page">
+
+      <div class="section-heading compact">
+
+        <span class="session-label">
+          EXPLORE
+        </span>
+
+        <h1>
+          Find something <em>interesting.</em>
+        </h1>
+
+        <p>
+          Browse the topics waiting to be discovered.
+        </p>
+
+      </div>
+
+
+      <div class="explore-controls">
+
+        <select
+          id="exploreCategory"
+          onchange="renderExplore()">
+
+          <option value="All">
+            All categories
+          </option>
+
+          <option value="Science">
+            Science
+          </option>
+
+          <option value="Medicine">
+            Medicine
+          </option>
+
+          <option value="Psychology">
+            Psychology
+          </option>
+
+          <option value="History">
+            History
+          </option>
+
+          <option value="Philosophy">
+            Philosophy
+          </option>
+
+          <option value="Technology">
+            Technology
+          </option>
+
+          <option value="Nature">
+            Nature
+          </option>
+
+          <option value="Literature">
+            Literature
+          </option>
+
+          <option value="Society">
+            Society
+          </option>
+
+        </select>
+
+
+        <select
+          id="exploreDifficulty"
+          onchange="renderExplore()">
+
+          <option value="All">
+            All levels
+          </option>
+
+          <option value="Easy">
+            Easy
+          </option>
+
+          <option value="Medium">
+            Medium
+          </option>
+
+          <option value="Hard">
+            Hard
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        id="exploreGrid"
+        class="topic-grid">
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HISTORY -->
+
+  <section id="history" class="page">
+
+    <div class="library-page">
+
+      <div class="section-heading compact">
+
+        <span class="session-label">
+          YOUR JOURNEY
+        </span>
+
+        <h1>
+          Learning <em>history.</em>
+        </h1>
+
+        <p>
+          Everything you've explored stays here.
+        </p>
+
+      </div>
+
+
+      <div id="historyContainer">
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROGRESS -->
+
+  <section id="progress" class="page">
+
+    <div class="library-page">
+
+      <div class="section-heading compact">
+
+        <span class="session-label">
+          YOUR PROGRESS
+        </span>
+
+        <h1>
+          Keep <em>curious.</em>
+        </h1>
+
+        <p>
+          Small discoveries add up.
+        </p>
+
+      </div>
+
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            ✦
+          </span>
+
+          <strong id="statTopics">
+            0
+          </strong>
+
+          <span>
+            Topics learned
+          </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            ◷
+          </span>
+
+          <strong id="statTime">
+            0m
+          </strong>
+
+          <span>
+            Learning time
+          </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            ◇
+          </span>
+
+          <strong id="statPresentations">
+            0
+          </strong>
+
+          <span>
+            Presentations
+          </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            🔥
+          </span>
+
+          <strong id="statStreak">
+            0
+          </strong>
+
+          <span>
+            Day streak
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="progress-section">
+
+        <div class="progress-section-heading">
+
+          <h2>
+            Topics by category
+          </h2>
+
+        </div>
+
+        <div id="categoryStats">
+        </div>
+
+      </div>
+
+
+      <div class="achievements-section">
+
+        <h2>
+          Achievements
+        </h2>
+
+        <div
+          id="achievementsGrid"
+          class="achievement-grid">
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<div
+  id="toast"
+  class="toast">
+</div>
+
+
+<div
+  id="modal"
+  class="modal hidden">
+
+  <div class="modal-card">
+
+    <div class="modal-symbol">
+      ?
+    </div>
+
+    <h2>
+      Leave this session?
+    </h2>
+
+    <p>
+      Your current session will not be completed,
+      but your notes are saved.
+    </p>
+
+    <div class="modal-actions">
+
+      <button
+        class="secondary-btn"
+        onclick="closeModal()">
+
+        Stay
+
+      </button>
+
+
+      <button
+        class="primary-btn"
+        onclick="leaveSession()">
+
+        Leave session
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
